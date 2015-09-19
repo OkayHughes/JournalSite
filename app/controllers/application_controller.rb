@@ -5,4 +5,5 @@ class ApplicationController < ActionController::Base
 
   def index
     render text: "Heroku Test"
+  end
 end
