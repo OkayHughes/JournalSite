@@ -11,9 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150920021613) do
+ActiveRecord::Schema.define(version: 20160103005727) do
 
   create_table "entries", force: true do |t|
+    t.string   "title"
+    t.string   "authors"
+    t.string   "journal"
+    t.integer  "volume"
+    t.string   "pages"
+    t.date     "published"
+    t.text     "abstract"
+    t.string   "doi"
+    t.string   "filepath"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "subjects"
+  end
+
+  create_table "submissions", force: true do |t|
     t.string   "title"
     t.string   "authors"
     t.string   "journal"

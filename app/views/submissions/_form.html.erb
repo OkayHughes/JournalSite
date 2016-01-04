@@ -1,0 +1,26 @@
+<%= form_for(@submission) do |f| %>
+  <% if @submission.errors.any? %>
+  <% end %>
+<br>
+<div id="filler"></div>
+<div class="entry">
+<div class="entry-info">
+<strong>
+    <span class="title">
+     <input name="title" type="text" placeholder="Title" id="title-field" class="submission-field">
+    </span>
+</strong><br><br>
+<input type="text" class="author-field submission-field" placeholder="Author" id="author1">, <input type="text" class="author-field submission-field"placeholder="Author" id="author2">, <input type="text" class="author-field submission-field" placeholder="Author" id="author3">
+<br>
+<input type="text" name="journal" class="author-field submission-field" placeholder="Journal" style="text-align:center"><br>
+
+<input type="text" name="doi" class="author-field submission-field other-field" placeholder="DOI" style="text-align:center">
+</div>
+<div class="divider"></div>
+<textarea  name="abstract" placeholder="Abstract" id="abstract-field" class="submission-field"></textarea><br>
+<input name="authors" type="hidden" id="authors-field">
+<a onclick="submitSubmission();" id="submit-submission">&#8679;</a>
+</div>
+
+<div id="bottom-padding"></div>
+<% end %>

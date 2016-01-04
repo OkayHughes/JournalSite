@@ -1,4 +1,26 @@
 <p id="notice"><%= notice %></p>
+<br>
+<div id="filler"></div>
+<div class="entry">
+<div class="entry-info">
+<strong>
+    <span class="title">
+     <%= @entry.title %> 
+    </span>
+</strong><br>
+<% @entry.authors.split(",").each do |author| %>
+<a class="author" href="#"><%= author %></a>,
+<% end %>
+<br>
+<%= @entry.journal %><br>
+<%= @entry.volume? ? @entry.volume + ", " : "" %>&nbsp;  
+<%= @entry.pages? ? @entry.pages + " <br>" : ""%> 
 
-<%= link_to 'Edit', edit_entry_path(@entry) %> |
-<%= link_to 'Back', entries_path %>
+<%= @entry.doi? ? @entry.doi : "" %>
+</div>
+<div class="divider"></div>
+<p>
+  <%= @entry.abstract %>
+</p>
+</div>
+<div id="bottom-padding"></div>

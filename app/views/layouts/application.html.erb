@@ -4,11 +4,28 @@
   <title>JNegResults</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
   <%= csrf_meta_tags %>
 </head>
+<%= favicon_link_tag %>
 <body>
-
-
-
+<div id="modal-holder" style="display:none">
+<div id="modal-background" onclick="$('#modal-holder').hide();"></div>
+    <div id="modal">
+        <div id="login-header">Log In</div>
+        <div id="login-divider"></div>
+        <form action="/login" id="login-form" method="post" autocomplete="off">
+            <input class="login-field" name="username" type="text" placeholder="Username" autocomplete="off">
+            <input class="login-field" name="password" type="password" placeholder="Password" autocomplete="off">
+            <a id="login-submit" onclick="$('#login-form').submit();">&#8679;</a>
+        </form>
+    </div>
+</div>
+<%= render "layouts/navbar"%>
+<div id="container">
+<%= yield %>
+</div>
 </body>
 </html>

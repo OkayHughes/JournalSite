@@ -1,0 +1,76 @@
+<div id="header"  class="border-thin">
+    <%= link_to entries_path do %>
+    <%= image_tag("logo.svg", :border=>0, :width => "60%", :height => "60%", :id => "logo")%>
+    <% end %>
+    <a id="login" onclick="$('#modal-holder').show();"> Log In
+    </a>
+</div>
+
+<div id="search-bar" class="border-thin">
+  <span id="search-terms" >
+    <span id="search-template" style="display:none" num="0">
+      <span class="search-fields">
+          <span class="operator-holder">
+            <select name="operator" class="operator disabled">
+              <option value="and">&nbsp;And</option>
+              <option value="or">&nbsp;Or</option>
+            </select>
+          </span>
+          <span class="second-search">
+            <span id="search">
+                <input name="text" class="search-box" type="text">
+            </span>
+            <span id="search-params">
+                <select name="field" class="field">
+                    <option value="title">&nbsp;Title</option>
+                    <option value="authors">&nbsp;Author</option>
+                    <option value="abstract">&nbsp;Abstract</option>
+                    <!--<option>&nbsp;Tags</option> -->
+                </select>
+            </span>
+          </span>
+      </span>
+    </span>
+  <form id="search-form" action="/search" method="post">
+    <input name="number" id="number" type="hidden" value="0">
+    <span class="search-fields field-cont" num="0">
+        <span id="search">
+            <input name="text0" class="search-box" type="text">
+        </span>
+        <span id="search-params">
+          <select name="field0" class="field"> 
+                <option value="title">&nbsp;Title</option>
+                <option value="authors">&nbsp;Author</option>
+                <option value="abstract">&nbsp;Abstract</option>
+                <!--<option>&nbsp;Tags</option> -->
+          </select>
+        </span>
+        <input name="operator0" value="and" type="hidden">
+    </span>
+    <span id="ghost">
+      <span class="search-fields field-cont">
+        <span class="operator-holder">
+          <select class="operator half" disabled>
+              <option>&nbsp;And</option>
+              <option>&nbsp;Or</option>
+          </select>
+        </span>
+        <span class="second-search">
+            <span id="search">
+                <input class="search-box half" type="text" onclick="newSearchField();" readonly>
+            </span>
+            <span id="search-params">
+                <select class="field half" disabled>
+                    <option>&nbsp;Title</option>
+                    <option>&nbsp;Author</option>
+                    <option>&nbsp;Abstract</option>
+                    <option>&nbsp;Tags</option>
+                </select>
+            </span>
+        </span>
+      </span>
+    </span>
+  </span>
+  <span id="submit"><a onclick="submitSearch();" id="search-link"><span id="search-heading">Search</span>&#8679;</span></a>
+  </form>
+</div>

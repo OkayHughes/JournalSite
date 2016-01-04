@@ -1,12 +1,25 @@
 Rails.application.routes.draw do
-  resources :entries
+  get "entries", to: "entries#index"
+  get "entries/:id", to: "entries#show", as: "entry"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'application#index'
+  root 'application#welcome'
 
+  post 'search', to: 'entries#search'
+  get 'submissions/new', to: "submissions#new"
+  post 'submissions', to: "submissions#create"
+  get 'search', to: 'entries#index'
+
+  post 'login', to: "entries#index"
+  get 'login', to: "entries#index"
+  get 'subject/:subject', to: "entries#subject", as:"subjects"
+
+  %w( 404 422 500 503 ).each do |code|
+    get code, :to => "errors#show", :code => code
+  end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

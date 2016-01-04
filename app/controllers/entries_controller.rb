@@ -4,17 +4,29 @@ class EntriesController < ApplicationController
   # GET /entries
   # GET /entries.json
   def index
+    @search = false
     @entries = Entry.all
+    @subjects = []
+    @entries.each do |entry|
+      entry_subjects = entry.subjects.split(",")
+      entry_subjects.each do |subject|
+        if not (@subjects.include? subject)
+            @subjects << subject
+        end
+      end
+    end
+    @subjects.sort_by!{ |m| m.downcase }
   end
 
   # GET /entries/1
   # GET /entries/1.json
   def show
+    @entry = Entry.find(params[:id])
   end
 
   # GET /entries/new
   def new
-    @entry = Entry.new
+    @entry = Entry.new(entry_params)
   end
 
   # GET /entries/1/edit
@@ -59,6 +71,52 @@ class EntriesController < ApplicationController
       format.html { redirect_to entries_url, notice: 'Entry was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+  def search
+    @search = true
+    num = params[:number].to_i
+    for i in 0..num 
+          if params[("operator"+i.to_s).to_sym] == "and"
+            logger.debug params[("text"+i.to_s).to_sym]
+          end 
+    end
+    query1 = Entry.search do
+      all do
+        for i in 0..num 
+          if params[("operator"+i.to_s).to_sym] == "and"
+            logger.debug params[("text"+i.to_s).to_sym]
+            fulltext '"' + params[("text"+i.to_s).to_sym] + '"', :fields => params[("field"+i.to_s).to_sym].to_sym
+          end 
+        end
+      end
+    end
+    query2 = Entry.search do
+      any do
+        for i in 0..num 
+          if params[("operator"+i.to_s).to_sym] == "or"
+            fulltext '"' + params[("text"+i.to_s).to_sym] + '"', :fields => params[("field"+i.to_s).to_sym].to_sym
+          end 
+        end
+      end
+    end
+    @entries = query1.results | query2.results
+    @subjects = []
+    @entries.each do |entry|
+      entry_subjects = entry.subjects.split(",")
+      entry_subjects.each do |subject|
+        if not (@subjects.include? subject)
+            @subjects << subject
+        end
+      end
+    end
+    @subjects.sort_by!{ |m| m.downcase }
+  end
+
+  def subject
+    @subject = params[:subject]
+    @search = false
+    @entries = Entry.all
+    @entries = @entries.select{ |x| x.subjects.split(",").include?( @subject ) }
   end
 
   private

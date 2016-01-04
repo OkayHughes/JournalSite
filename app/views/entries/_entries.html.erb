@@ -1,0 +1,28 @@
+<span id="sidebar">
+<h1 id="field-heading"> Field: </h1>
+<% @subjects.each do |subject| %>
+<div class="subject-link"><input class="subject-checkbox" subject="<%=subject%>" type="checkbox">&nbsp;<%= subject %></input></div><br>
+<% end %>
+</span>
+<span id="abstracts">
+<div id="filler"></div>
+<% @entries.each do |entry| %>
+<div class="entry" subjects="<%=entry.subjects%>">
+<div class="entry-info">
+<strong><%= link_to(entry_path(entry), :class => "title" ) do %> <%= entry.title %> <%end%></strong><br>
+<% entry.authors.split(",").each do |author| %>
+<a class="author" href="#"><%= author %></a>,
+<% end %>
+<br>
+<%= entry.journal %>
+</div>
+<div class="divider"></div>
+<p>
+  <%= entry.abstract %>
+</p>
+<br>
+</div>
+
+<% end %>
+<div id="bottom-padding"></div>
+</span>

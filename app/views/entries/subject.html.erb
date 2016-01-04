@@ -1,0 +1,28 @@
+<% if @entries.size != 0 %>
+<h1 id="field-heading"> <%= @subject %> Abstracts</h1>
+<span id="subject-abstracts">
+<div id="filler"></div>
+<% @entries.each do |entry| %>
+<div class="entry" subjects="<%=entry.subjects%>">
+<div class="entry-info">
+<strong><%= link_to(entry_path(entry), :class => "title" ) do %> <%= entry.title %> <%end%></strong><br>
+<% entry.authors.split(",").each do |author| %>
+<a class="author" href="#"><%= author %></a>,
+<% end %>
+<br>
+<%= entry.journal %>
+</div>
+<div class="divider"></div>
+<p>
+  <%= entry.abstract %>
+</p>
+<br>
+</div>
+
+<% end %>
+<div id="bottom-padding"></div>
+</span>
+<% else %>
+    <br>
+    <h1 id="field-heading">No abstracts found for subject <%=@subject%> </h1>
+<% end %>

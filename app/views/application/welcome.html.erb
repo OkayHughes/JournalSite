@@ -1,0 +1,19 @@
+<div id="container-1">
+<%= image_tag("welcome.jpg", id:"splash-image") %>
+
+<div id="splash-header">
+</div>
+<div id="splash-head-text">
+    This website is designed as a repository for negative scientific results from every field.<br> You can submit abstracts
+    <%= link_to "here", submissions_new_path %>
+</div>
+<%= image_tag("splashlogo.svg", id:"splash-title") %>
+<div id="splash-content">
+</div>
+<div id="splash-foot-text">
+View all abstracts <%= link_to "here", entries_path %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Subjects:
+<% @subjects.each do |subject| %>
+ <%= link_to subject, subjects_path(subject)%>,&nbsp;
+ <% end %>
+</div>
+</div>
