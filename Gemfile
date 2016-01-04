@@ -26,6 +26,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'sunspot_rails'
+gem 'sunspot_solr'
 gem "passenger"
 gem 'thin'
 
@@ -44,7 +45,6 @@ group :development, :test do
     # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
     gem 'spring'
 
-    gem 'sunspot_solr'
 
 end
 
@@ -52,7 +52,6 @@ end
 group :production do
   gem 'pg',             '0.17.1'
   gem 'rails_12factor', '0.0.2'
-  gem 'sunspot_solr'
 end
 
 
