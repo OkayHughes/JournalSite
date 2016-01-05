@@ -76,6 +76,7 @@ class EntriesController < ApplicationController
     @search = true
     num = params[:number].to_i
     query1 = Entry.search do
+    any do
       all do
         for i in 0..num 
           if params[("operator"+i.to_s).to_sym] == "and"
@@ -84,6 +85,7 @@ class EntriesController < ApplicationController
           end 
         end
       end
+
       any do
         for i in 0..num 
           if params[("operator"+i.to_s).to_sym] == "or"
@@ -92,6 +94,7 @@ class EntriesController < ApplicationController
         end
       end
     end
+  end
 
     @entries = query1.results #| query2.results
     @subjects = []
