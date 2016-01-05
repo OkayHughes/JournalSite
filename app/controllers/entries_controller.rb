@@ -84,19 +84,16 @@ class EntriesController < ApplicationController
           end 
         end
       end
-    end
-    query2 = Entry.search do
       any do
         for i in 0..num 
           if params[("operator"+i.to_s).to_sym] == "or"
-            query1="a wet noodle"
             fulltext '"' + params[("text"+i.to_s).to_sym] + '"', :fields => params[("field"+i.to_s).to_sym].to_sym
           end 
         end
       end
     end
 
-    @entries = query1.results | query2.results
+    @entries = query1.results #| query2.results
     @subjects = []
     @entries.each do |entry|
       entry_subjects = entry.subjects.split(",")
