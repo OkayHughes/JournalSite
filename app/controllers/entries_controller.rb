@@ -86,8 +86,9 @@ class EntriesController < ApplicationController
       end
     end
     query2 = Entry.search do
-      any_of do
+      any do
         for i in 0..num 
+          query1="a wet noodle"
           if params[("operator"+i.to_s).to_sym] == "or"
             fulltext '"' + params[("text"+i.to_s).to_sym] + '"', :fields => params[("field"+i.to_s).to_sym].to_sym
           end 
