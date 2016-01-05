@@ -94,7 +94,7 @@ class EntriesController < ApplicationController
         end
       end
     end
-    @entries = query1.results #| query2.results
+    @entries = query1.results | query2.results
     @subjects = []
     @entries.each do |entry|
       entry_subjects = entry.subjects.split(",")
