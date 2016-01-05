@@ -1,6 +1,6 @@
 production:
   solr:
-    hostname: collegeapp-project.herokuapp.com
+    hostname: WEBSOLR_URL
     port: 8983
     log_level: INFO
     path: /solr/production
@@ -9,14 +9,14 @@ production:
 
 development:
   solr:
-    hostname: collegeapp-project.herokuapp.com
+    hostname: WEBSOLR_URL
     port: 8983
     log_level: INFO
     path: /solr/development
 
 test:
   solr:
-    hostname: collegeapp-project.herokuapp.com
+    hostname: WEBSOLR_URL
     port: 8983
     log_level: WARNING
     path: /solr/test
