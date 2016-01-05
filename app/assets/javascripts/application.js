@@ -35,7 +35,9 @@ function newSearchField(){
 }
 
 function submitSearch(){
-    $("#search-form").submit();
+    if($("#text0").val().length > 0){
+        $("#search-form").submit();
+    }
 }
 function submitSubmission(){
     var authors = ""
