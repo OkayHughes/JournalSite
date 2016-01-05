@@ -75,11 +75,6 @@ class EntriesController < ApplicationController
   def search
     @search = true
     num = params[:number].to_i
-    for i in 0..num 
-          if params[("operator"+i.to_s).to_sym] == "and"
-            logger.debug params[("text"+i.to_s).to_sym]
-          end 
-    end
     query1 = Entry.search do
       all do
         for i in 0..num 
@@ -99,7 +94,7 @@ class EntriesController < ApplicationController
         end
       end
     end
-    @entries = query1.results | query2.results
+    @entries = query1.results #| query2.results
     @subjects = []
     @entries.each do |entry|
       entry_subjects = entry.subjects.split(",")
